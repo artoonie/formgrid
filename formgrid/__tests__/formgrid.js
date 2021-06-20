@@ -1,12 +1,18 @@
-const slider = require('../formgrid.js');
+const formgrid = require('../formgrid.js');
 
 beforeEach(() => {
+  document.body.innerHTML = '<div id="parent"></div>'
   // See: https://github.com/jsdom/jsdom/issues/1695
   Element.prototype.scrollIntoView = jest.fn();
 });
 
 describe('API basic tests', () => {
-  test('Create entire timeline and do not crash', () => {
-    const grid = FormGrid('table-id');
+  test('Create with defaults', () => {
+    const grid = new formgrid.FormGrid('parent', new formgrid.InitialFormGridConfig());
+  }),
+  test('Test that model size matches view size', () => {
+    const grid = new formgrid.FormGrid('parent', new formgrid.InitialFormGridConfig());
+    expect(grid.model.rows()).toEqual(grid.rowsInView());
+    expect(grid.model.cols()).toEqual(grid.colsInView());
   });
 });

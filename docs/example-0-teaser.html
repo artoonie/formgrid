@@ -3,6 +3,13 @@
     </div>
 
     <script type="text/javascript">
-        FormGrid('ex0');
+        const config = new InitialFormGridConfig();
+
+        config.rowAxisConfig.labelPrefix = "Round";
+
+        config.colAxisConfig.labelPrefix = "Candidate";
+        config.colAxisConfig.userEditable = true;
+
+        const fg = new FormGrid('wrapper-0', config);
     </script>
 </div>
